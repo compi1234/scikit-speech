@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name="skspeech",
     version="0.1.0",
-    url="",
+    url="https://github.com/compi1234/scikit-speech",
 
     author="Dirk Van Compernolle",
     author_email="compi@esat.kuleuven.be",
