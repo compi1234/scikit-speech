@@ -3,13 +3,8 @@ from sks_version import __version__
     
 setup(
     name="skspeech",
-<<<<<<< Updated upstream
-    version="0.0.2",
-    url="https://github.com/compi1234/scikit-speech",
-=======
     version=__version__,
     url="",
->>>>>>> Stashed changes
 
     author="Dirk Van Compernolle",
     author_email="compi@esat.kuleuven.be",
