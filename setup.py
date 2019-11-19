@@ -1,9 +1,15 @@
 from setuptools import setup, find_packages
-
+from sks_version import __version__
+    
 setup(
     name="skspeech",
+<<<<<<< Updated upstream
     version="0.0.2",
     url="https://github.com/compi1234/scikit-speech",
+=======
+    version=__version__,
+    url="",
+>>>>>>> Stashed changes
 
     author="Dirk Van Compernolle",
     author_email="compi@esat.kuleuven.be",
@@ -12,7 +18,8 @@ setup(
     license = "free",
     
     packages = ['skspeech'],
-    py_modules = [],
+    # add skspeech_version to the required install modules
+    py_modules = ['skspeech','sks_version'],
     # a dictionary refering to required data not in .py files
     package_data = {},
     

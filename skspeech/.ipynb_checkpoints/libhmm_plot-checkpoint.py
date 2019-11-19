@@ -11,8 +11,11 @@ This library contains a variety of pretty print / plot routines for simple HMM m
 WARNING: many of these routines are ad hoc and should be considered as an example rather
     than as a fool proof generic routine; i.e. for some models the output will look fine
     for others it may be dismal
+<<<<<<< Updated upstream
     
 14/11/2019: changed 'backtrace' to 'alignment'
+=======
+>>>>>>> Stashed changes
 """
 
 # do all the imports
@@ -27,8 +30,13 @@ import seaborn as sns
 
 # put the pyspeech library on the path
 sys.path.append(os.path.join('C:\\users\\compi\\Nextcloud\\Jupyter'))
+<<<<<<< Updated upstream
 from . import libhmm as libhmm
 from . import utils as u
+=======
+import skspeech.libhmm as libhmm
+import skspeech.utils as u
+>>>>>>> Stashed changes
 
 
 mpl.rcParams['figure.figsize'] = [8.0, 8.0]
@@ -84,7 +92,11 @@ def plot_model(self,prob_style=[],cmap=[],figsize=(14,4)):
     
 
 def plot_trellis(self,X=None,plot_frameprobs=False,xticks=[],yticks=[],cmap=[],vmin=-10.,vmax=0.,fmt=".3f",figsize=(15,5),
+<<<<<<< Updated upstream
                  plot_backptrs=False,plot_alignment=False,fontsize_backptrs=10):
+=======
+                 plot_backptrs=False,plot_backtrace=False,fontsize_backptrs=10):
+>>>>>>> Stashed changes
     """
     plot_trellis(): trellis plot with multiple single axis plots
     """
@@ -93,7 +105,11 @@ def plot_trellis(self,X=None,plot_frameprobs=False,xticks=[],yticks=[],cmap=[],v
         return
     n_frames = len(X)
     
+<<<<<<< Updated upstream
     frameprobs, trellis, backptrs, alignment = self.viterbi_trellis(X)
+=======
+    frameprobs, trellis, backptrs, backtrace = self.viterbi_trellis(X)
+>>>>>>> Stashed changes
     
     if not xticks:
         try:
@@ -131,7 +147,11 @@ def plot_trellis(self,X=None,plot_frameprobs=False,xticks=[],yticks=[],cmap=[],v
 
                 if(not mask.T[s,j]):
                     bplabel = self.states[backptrs.T[s,j]]
+<<<<<<< Updated upstream
                     if (alignment[j] == s) & plot_alignment:
+=======
+                    if (backtrace[j] == s) & plot_backtrace:
+>>>>>>> Stashed changes
                         axt.text(j+0.08,s+0.08,bplabel,ha="left",va="top",
                             fontweight='heavy',fontsize=fontsize_backptrs,color="k",
                                  bbox={'pad':5, 'alpha':0.75, 'facecolor':'white'})                        
@@ -140,9 +160,15 @@ def plot_trellis(self,X=None,plot_frameprobs=False,xticks=[],yticks=[],cmap=[],v
                             fontweight='light',fontsize=fontsize_backptrs,color="k")
 
 # now add the backtrace as second x-axis labels at the bottom
+<<<<<<< Updated upstream
     if(plot_alignment):
         for j in range(0,len(X)):
             axt.text(j+0.5,self.n_states+0.05,self.states[alignment[j]],ha="center",va="top",
+=======
+    if(plot_backtrace):
+        for j in range(0,len(X)):
+            axt.text(j+0.5,self.n_states+0.05,self.states[backtrace[j]],ha="center",va="top",
+>>>>>>> Stashed changes
                             fontweight='heavy',fontsize=12,color="b")
 
     plt.show()
@@ -150,7 +176,11 @@ def plot_trellis(self,X=None,plot_frameprobs=False,xticks=[],yticks=[],cmap=[],v
     
 #################################
 def plot_trellis2(self,X=None,xticks=[],yticks=[],cmap=[],cmapf=[],vmin=-10.,vmax=0.,
+<<<<<<< Updated upstream
                  plot_backptrs=False,plot_alignment=False,plot_frameprobs=False,plot_norm=False,
+=======
+                 plot_backptrs=False,plot_backtrace=False,plot_frameprobs=False,plot_norm=False,
+>>>>>>> Stashed changes
                  fontsize=12,fmt=".3f",figsize=(15,5)):
     """
     plot_trellis2(): trellis plotting using subplots
@@ -161,7 +191,11 @@ def plot_trellis2(self,X=None,xticks=[],yticks=[],cmap=[],cmapf=[],vmin=-10.,vma
         print("ERROR(plot_trellis): X is not specified\n")
         return
     n_frames = len(X)    
+<<<<<<< Updated upstream
     frameprobs, trellis, backptrs, alignment = self.viterbi_trellis(X)
+=======
+    frameprobs, trellis, backptrs, backtrace = self.viterbi_trellis(X)
+>>>>>>> Stashed changes
     if plot_norm:
         trellis_p = trellis.copy()
         if self.prob_style == "lin":
@@ -219,7 +253,11 @@ def plot_trellis2(self,X=None,xticks=[],yticks=[],cmap=[],cmapf=[],vmin=-10.,vma
         for s in range(0,self.n_states):
             if(not mask.T[s,j]):
                 bplabel = "("+self.states[backptrs.T[s,j]]+")"
+<<<<<<< Updated upstream
                 if(plot_alignment and (s == alignment[j]) ):
+=======
+                if(plot_backtrace and (s == backtrace[j]) ):
+>>>>>>> Stashed changes
 #                    axt.text(j+0.03,s+0.1,'*',ha="left",va="top",
                     axt.text(j+0.95,s+0.5,'*',ha="right",va="center",
                         fontweight='heavy',fontsize=fontsize+2,color="blue")
