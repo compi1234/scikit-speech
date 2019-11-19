@@ -482,10 +482,11 @@ class Trellis():
                 
             '''
             
-            if( endstates == None ): endstate = self.n_states-1
+            if( endstate == None ): endstate = self.n_states-1
             
             # Find alignment via backtracking
-            alignment[self.n_samples-1] = end_state
+            alignment = np.zeros(self.n_samples,dtype='int') - 1 
+            alignment[self.n_samples-1] = endstate
             for i in range(self.n_samples-1,0,-1):
                 alignment[i-1]=self.backptrs[i,alignment[i]]
             return alignment
