@@ -25,15 +25,9 @@ import matplotlib.pyplot as plt
 
 import seaborn as sns
 
-# put the pyspeech library on the path
-sys.path.append(os.path.join('C:\\users\\compi\\Nextcloud\\Jupyter'))
-<<<<<<< Updated upstream
-from . import libhmm as libhmm
-from . import utils as u
-=======
 import skspeech.libhmm as libhmm
 import skspeech.utils as u
->>>>>>> Stashed changes
+
 
 
 mpl.rcParams['figure.figsize'] = [8.0, 8.0]

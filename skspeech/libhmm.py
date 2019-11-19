@@ -10,6 +10,7 @@ Modification History:
 12/12/2018 Created
 11/02/2019 All list-like objects (states, labels, end_states, ... ) are now uniformly numpy arrays allowing for list indexing
 14/11/2019: changed 'backtrace' to 'alignment'
+19/11/2019: added routine backtrack() to class Trellis
 
 libhmm vs. hmmlearn    
 ====================
@@ -396,8 +397,6 @@ class DHMM(_BaseHMM):
         print("OBSERVATION PROBABITIES for DISCRETE DENSITY MODEL")
         display(pd.DataFrame(self.emissionprob,index=self.states,columns=columns))                                  
  
-
-
 class Trellis():
         def __init__(self,n_samples=1,n_states=1,prob_style="lin"):
             """
@@ -462,13 +461,36 @@ class Trellis():
             endprobs = self.probs[self.n_samples-1,:]
             self.end_state = hmm.end_states[np.argmax(endprobs[hmm.end_states])]
             self.end_prob = self.probs[self.n_samples-1,self.end_state]
-                    
+            
             # Find alignment via backtracking
-            self.alignment[self.n_samples-1] = self.end_state
-            for i in range(self.n_samples-1,0,-1):
-                self.alignment[i-1]=self.backptrs[i,self.alignment[i]]
+            self.alignment = self.backtrack(endstate=self.end_state)
+            
+            #self.alignment[self.n_samples-1] = self.end_state
+            #for i in range(self.n_samples-1,0,-1):
+            #    self.alignment[i-1]=self.backptrs[i,self.alignment[i]]
             
 
+        def backtrack(self,endstate=None):
+            ''' Compute the backtracking from a Viterbi Trellis
+            
+            Parameters:            
+                endstate: state to backtrack from 
+                            (default: last state in trellis)
+
+            Return:
+                the alignment     (n_samples,) * int
+                
+            '''
+            
+            if( endstates == None ): endstate = self.n_states-1
+            
+            # Find alignment via backtracking
+            alignment[self.n_samples-1] = end_state
+            for i in range(self.n_samples-1,0,-1):
+                alignment[i-1]=self.backptrs[i,alignment[i]]
+            return alignment
+            
+            
         def print(self,Xlabels=[],Slabels=[],col_norm=False):
             S_index = ['S'+str(i) for i in range(0,self.n_states)]
             T_index = [i for i in range(0,self.n_samples)]
